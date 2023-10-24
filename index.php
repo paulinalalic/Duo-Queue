@@ -1,4 +1,6 @@
 <?php
+$menu = isset($_GET['menu']) ? $_GET['menu'] : 1; // Set a default value of 1 if 'menu' is not in the URL
+
 print '
 <!DOCTYPE HTML>
 <html>
@@ -15,19 +17,31 @@ print '
 <body>
 
     <header>
-		<div class="banner"></div>
-		<nav>
-			<ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Contact</a></li>
-			</ul>
-		</nav>
+    <div class="banner"></div>
+        <nav>';
+        include("menu.php"); // You should include the menu here, not in the main section
+        print '
 	</header>
-    <main>
-		
+
+    <main>';
+    
+    if ($menu == 1) { // Correctly compare the menu value
+        include("home.php"); // Include the content for menu item 1
+    }
+    else if ($menu == 2) {
+        include("about.php");
+    }
+    else if ($menu == 3) {
+        include("contact.php");
+    }
+    else if ($menu == 4) {
+        include("gallery.php");
+    }
+    else if ($menu == 5) {
+        include("news.php");
+    }
+
+    print '
     </main>
     <footer>
 		<p>Copyright &copy; 2023 Paulina Lalic. <a href="https://github.com/paulinalalic" target="_blank"><img src="img/github.png" title="GitHub" alt="GitHub"></a></p>
