@@ -1,6 +1,17 @@
 <?php
-$menu = isset($_GET['menu']) ? $_GET['menu'] : 1; // Set a default value of 1 if 'menu' is not in the URL
+define('__APP__', TRUE);
+session_start();
+include ("connect.php");
+# Variables MUST BE INTEGERS
+if(isset($_GET['menu'])) { $menu   = (int)$_GET['menu']; }
+if(isset($_GET['action'])) { $action   = (int)$_GET['action']; }
 
+# Variables MUST BE STRINGS A-Z
+if(!isset($_POST['_action_']))  { $_POST['_action_'] = FALSE;  }
+
+if (!isset($menu)) { $menu = 1; }
+$menu = isset($_GET['menu']) ? $_GET['menu'] : 1; // Set a default value of 1 if 'menu' is not in the URL
+include_once("funkcije.php");
 print '
 <!DOCTYPE HTML>
 <html>
@@ -19,14 +30,20 @@ print '
     <header>
     <div class="banner"></div>
         <nav>';
-        include("menu.php"); // You should include the menu here, not in the main section
+        include("menu.php"); 
         print '
 	</header>
 
     <main>';
+
+    if (isset($_SESSION['message'])) {
+        print $_SESSION['message'];
+        unset($_SESSION['message']);
+    }
+
     
-    if ($menu == 1) { // Correctly compare the menu value
-        include("home.php"); // Include the content for menu item 1
+    if ($menu == 1) { 
+        include("home.php"); 
     }
     else if ($menu == 2) {
         include("about.php");
@@ -39,6 +56,15 @@ print '
     }
     else if ($menu == 5) {
         include("news.php");
+    }
+    else if ($menu == 6) {
+        include("register.php");
+    }
+    else if ($menu == 7) {
+        include("login.php");
+    }
+    else if ($menu == 8) {
+        include("admin.php");
     }
 
     print '
