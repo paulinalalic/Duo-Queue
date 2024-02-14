@@ -66,6 +66,10 @@ print '
     else if ($menu == 8) {
         include("admin.php");
     }
+    else if ($menu == 9) {
+        include("api.php");
+    }
+    
 
     print '
     </main>

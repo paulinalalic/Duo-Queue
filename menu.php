@@ -4,6 +4,7 @@
     <li><a href="about.php?menu=2">About us</a></li>
     <li><a href="contact.php?menu=3">Contact</a></li>
     <li><a href="gallery.php?menu=4">Gallery</a></li>
+    <li><a href="api.php?menu=9">Summoners</a></li>
     <li><a href="news.php?menu=5">News</a></li>';
     if (!isset($_SESSION['user']['valid']) || $_SESSION['user']['valid'] == 'false') {
         print '
